@@ -174,7 +174,6 @@ class TransactionCell: UITableViewCell {
 
             nameLbl.topAnchor.constraint(equalTo: dateLbl.bottomAnchor, constant: 20),
             nameLbl.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 10),
-//            nameLbl.widthAnchor.constraint(equalToConstant: 100),
             
             mobileLbl.topAnchor.constraint(equalTo: nameLbl.bottomAnchor, constant: 10),
             mobileLbl.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 10),
@@ -189,7 +188,7 @@ class TransactionCell: UITableViewCell {
             priceLbl.topAnchor.constraint(equalTo: statusView.bottomAnchor,constant: 20),
             priceLbl.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
 
-            border.topAnchor.constraint(equalTo: priceLbl.bottomAnchor, constant: 20),
+            border.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -12),
             border.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
             border.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
             border.heightAnchor.constraint(equalToConstant: 1),
