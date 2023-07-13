@@ -41,14 +41,15 @@ class TransactionCell: UITableViewCell {
     lazy var dateLbl: UILabel = {
         let lbl = UILabel(frame: .zero)
         lbl.textColor = .systemGray3
-        lbl.font = UIFont(name: "Avenir-Light", size: 14)
+        lbl.font = UIFont(name: "Avenir", size: 12)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
     
     lazy var logoImage : UIImageView = {
         var iv = UIImageView()
-        iv.image = nil //UIImage(named: "")?.withRenderingMode(.alwaysTemplate)
+        iv.image = UIImage(named: "mtn")?.withRenderingMode(.alwaysOriginal)
+        iv.layer.masksToBounds = true
         iv.backgroundColor = .systemGray3
         iv.contentMode = .scaleAspectFill
         iv.layer.cornerRadius = 50/2
@@ -69,14 +70,6 @@ class TransactionCell: UITableViewCell {
         lbl.numberOfLines = 1
         lbl.textColor = .systemGray3
         lbl.font = UIFont(name: "Avenir-Book", size: 15)
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        return lbl
-    }()
-    
-    lazy var statusLbl: UILabel = {
-        let lbl = UILabel(frame: .zero)
-        lbl.textColor = .black
-        lbl.font = UIFont(name: "Avenir-Medium", size: 15)
         lbl.translatesAutoresizingMaskIntoConstraints = false
         return lbl
     }()
@@ -118,7 +111,7 @@ class TransactionCell: UITableViewCell {
     lazy var starImage : UIImageView = {
         var iv = UIImageView()
         iv.image = UIImage(systemName: "star.fill")?.withRenderingMode(.alwaysTemplate)
-        iv.tintColor = UIColor.yellow
+        iv.tintColor = UIColor(hex: "#e4e806")
         iv.contentMode = .scaleAspectFill
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
@@ -140,11 +133,18 @@ class TransactionCell: UITableViewCell {
         return lbl
     }()
     
+    lazy var statusView: StatusView = {
+        let v = StatusView(frame: .zero)
+        v.layer.cornerRadius = 30/2
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+    
     func setupViews(){
         contentView.addSubview(container)
         container.addSubview(dateLbl)
         container.addSubview(logoImage)
-        container.addSubview(statusLbl)
+        container.addSubview(statusView)
         container.addSubview(priceLbl)
         container.addSubview(nameLbl)
         container.addSubview(mobileLbl)
@@ -174,17 +174,19 @@ class TransactionCell: UITableViewCell {
 
             nameLbl.topAnchor.constraint(equalTo: dateLbl.bottomAnchor, constant: 20),
             nameLbl.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 10),
-            
+//            nameLbl.widthAnchor.constraint(equalToConstant: 100),
             
             mobileLbl.topAnchor.constraint(equalTo: nameLbl.bottomAnchor, constant: 10),
             mobileLbl.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 10),
             mobileLbl.centerYAnchor.constraint(equalTo: priceLbl.centerYAnchor),
             
-            statusLbl.topAnchor.constraint(equalTo: dateLbl.bottomAnchor,constant: 20),
-            statusLbl.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
-            statusLbl.leadingAnchor.constraint(equalTo: nameLbl.trailingAnchor, constant: 30),
+            statusView.topAnchor.constraint(equalTo: dateLbl.bottomAnchor,constant: 20),
+            statusView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
+            statusView.leadingAnchor.constraint(equalTo: nameLbl.trailingAnchor, constant: 30),
+            statusView.heightAnchor.constraint(equalToConstant: 30),
+            statusView.widthAnchor.constraint(equalToConstant: 90),
             
-            priceLbl.topAnchor.constraint(equalTo: statusLbl.bottomAnchor,constant: 20),
+            priceLbl.topAnchor.constraint(equalTo: statusView.bottomAnchor,constant: 20),
             priceLbl.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
 
             border.topAnchor.constraint(equalTo: priceLbl.bottomAnchor, constant: 20),
@@ -211,7 +213,7 @@ class TransactionCell: UITableViewCell {
         guard let item = data else { return }
         dateLbl.text = item.date
         nameLbl.text = "\(item.receipient)"
-        mobileLbl.text = "0\(item.mobile)"
+        
         priceLbl.text = "GH₵ \(item.price)"
         commentLbl.text = item.comments
         
@@ -225,18 +227,28 @@ class TransactionCell: UITableViewCell {
         
         switch item.transaction_status {
             case .failed:
-                statusLbl.text = "Failed"
+                statusView.label.text = "Failed"
+                statusView.label.textColor = UIColor(hex: "#e14015")
+                statusView.backgroundColor = UIColor(hex: "#e14015")?.withAlphaComponent(0.2)
+                statusView.icon.image = UIImage(systemName: "xmark.circle.fill")?.withRenderingMode(.alwaysTemplate)
+                statusView.icon.tintColor = UIColor(hex: "#e14015")
             case .sucesss:
-                statusLbl.text = "Sucesss"
+                statusView.label.text = "Sucesssful"
+                statusView.label.textColor = UIColor(hex: "#37e120")
+                statusView.backgroundColor = UIColor(hex: "#37e120")?.withAlphaComponent(0.2)
+                statusView.icon.image = UIImage(systemName: "checkmark.seal.fill")?.withRenderingMode(.alwaysTemplate)
+                statusView.icon.tintColor = UIColor(hex: "#37e120")
             case .pending:
-                statusLbl.text = "Pending"
+                statusView.label.text = "Pending"
+                statusView.label.textColor = UIColor(hex: "#20a9e1")
+                statusView.backgroundColor = UIColor(hex: "#20a9e1")?.withAlphaComponent(0.2)
+                statusView.icon.image = UIImage(systemName: "hourglass.circle.fill")?.withRenderingMode(.alwaysTemplate)
+                statusView.icon.tintColor = UIColor(hex: "#20a9e1")
         }
         
-    }
-    
-    func setupAttributedText (_ receipient: String, _ mobile: String) -> NSAttributedString {
-        let text = NSMutableAttributedString(attributedString: NSAttributedString(string: "\(receipient)\n", attributes: [.foregroundColor: UIColor.gray, .font: UIFont(name: "Avenir", size: 15)!]))
-        text.append(NSAttributedString(string: mobile, attributes: [.foregroundColor: UIColor.gray, .font: UIFont(name: "Avenir", size: 15)!]))
-        return text
+        let numberString = item.mobile
+        let number = "\(numberString.prefix(3)) \(numberString.dropFirst(3).prefix(3)) \(numberString.dropFirst(6))"
+        mobileLbl.text = number
+        
     }
 }

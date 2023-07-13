@@ -14,7 +14,7 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+        navigationController?.navigationBar.isHidden = true
         setupViews()
         setupContraints()
         
@@ -44,10 +44,10 @@ class HomeVC: UIViewController {
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 14)
         btn.setImage(UIImage(systemName: "plus.circle")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
+        btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
         btn.tintColor = .white
         btn.semanticContentAttribute = .forceLeftToRight
-        btn.backgroundColor = .green
+        btn.backgroundColor = UIColor(hex: "#33e777")
         btn.layer.cornerRadius = 10
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
@@ -56,7 +56,7 @@ class HomeVC: UIViewController {
     lazy var segmentedContol: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["History","Transaction Summary"])
         sc.isSelected = true
-        sc.backgroundColor = UIColor.systemGray6
+        sc.backgroundColor = UIColor.systemGray6.withAlphaComponent(0.5)
         sc.selectedSegmentIndex = 0
         sc.selectedSegmentTintColor = .white
         sc.setTitleTextAttributes([.font: UIFont(name: "Avenir Medium", size: 15)!], for: .normal)
@@ -72,8 +72,7 @@ class HomeVC: UIViewController {
     
     func setupContraints(){
         NSLayoutConstraint.activate([
-            
-            segmentedContol.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            segmentedContol.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             segmentedContol.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             segmentedContol.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             segmentedContol.heightAnchor.constraint(equalToConstant: 35),
