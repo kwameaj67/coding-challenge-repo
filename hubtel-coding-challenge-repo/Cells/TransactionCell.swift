@@ -94,7 +94,7 @@ class TransactionCell: UITableViewCell {
         sv.spacing = 10
         sv.axis = .horizontal
         sv.alignment = .center
-        sv.distribution = .equalCentering
+        sv.distribution = .fill
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
@@ -183,7 +183,6 @@ class TransactionCell: UITableViewCell {
             statusView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
             statusView.leadingAnchor.constraint(equalTo: nameLbl.trailingAnchor, constant: 30),
             statusView.heightAnchor.constraint(equalToConstant: 30),
-            statusView.widthAnchor.constraint(equalToConstant: 90),
             
             priceLbl.topAnchor.constraint(equalTo: statusView.bottomAnchor,constant: 20),
             priceLbl.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
@@ -198,6 +197,8 @@ class TransactionCell: UITableViewCell {
             stackView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
             
             typeLbl.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: 10),
+            
+            commentLbl.leadingAnchor.constraint(equalTo: typeLbl.trailingAnchor, constant: 5),
             
             userImage.heightAnchor.constraint(equalToConstant: 30),
             userImage.widthAnchor.constraint(equalToConstant: 30),
@@ -226,20 +227,20 @@ class TransactionCell: UITableViewCell {
         
         switch item.transaction_status {
             case .failed:
-                statusView.label.text = "Failed"
-                statusView.label.textColor = UIColor(hex: "#e14015")
+                statusView.statusLbl.text = "Failed"
+                statusView.statusLbl.textColor = UIColor(hex: "#e14015")
                 statusView.backgroundColor = UIColor(hex: "#e14015")?.withAlphaComponent(0.2)
                 statusView.icon.image = UIImage(systemName: "xmark.circle.fill")?.withRenderingMode(.alwaysTemplate)
                 statusView.icon.tintColor = UIColor(hex: "#e14015")
             case .sucesss:
-                statusView.label.text = "Sucesssful"
-                statusView.label.textColor = UIColor(hex: "#37e120")
+                statusView.statusLbl.text = "Sucesssful"
+                statusView.statusLbl.textColor = UIColor(hex: "#37e120")
                 statusView.backgroundColor = UIColor(hex: "#37e120")?.withAlphaComponent(0.2)
                 statusView.icon.image = UIImage(systemName: "checkmark.seal.fill")?.withRenderingMode(.alwaysTemplate)
                 statusView.icon.tintColor = UIColor(hex: "#37e120")
             case .pending:
-                statusView.label.text = "Pending"
-                statusView.label.textColor = UIColor(hex: "#20a9e1")
+                statusView.statusLbl.text = "Pending"
+                statusView.statusLbl.textColor = UIColor(hex: "#20a9e1")
                 statusView.backgroundColor = UIColor(hex: "#20a9e1")?.withAlphaComponent(0.2)
                 statusView.icon.image = UIImage(systemName: "hourglass.circle.fill")?.withRenderingMode(.alwaysTemplate)
                 statusView.icon.tintColor = UIColor(hex: "#20a9e1")

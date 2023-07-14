@@ -8,15 +8,14 @@
 import UIKit
 
 
-class StatusView: UIView {
+class StatusView: UIStackView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        spacing = 10
-//        axis = .horizontal
-//        alignment = .center
-//        distribution = .
+        axis = .horizontal
+        alignment = .center
+        distribution = .fill
         translatesAutoresizingMaskIntoConstraints = false
         
         setupViews()
@@ -36,7 +35,7 @@ class StatusView: UIView {
         return iv
     }()
     
-    lazy var label: UILabel = {
+    lazy var statusLbl: UILabel = {
         let lbl = UILabel(frame: .zero)
         lbl.font = UIFont(name: "Avenir-Medium", size: 12)
         lbl.translatesAutoresizingMaskIntoConstraints = false
@@ -45,8 +44,8 @@ class StatusView: UIView {
 
 
     func setupViews(){
-        addSubview(icon)
-        addSubview(label)
+        addArrangedSubview(icon)
+        addArrangedSubview(statusLbl)
     }
     
     func setupContraints(){
@@ -56,8 +55,8 @@ class StatusView: UIView {
             icon.widthAnchor.constraint(equalToConstant: 16),
             icon.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             
-            label.centerYAnchor.constraint(equalTo: centerYAnchor),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            statusLbl.centerYAnchor.constraint(equalTo: centerYAnchor),
+            statusLbl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
         ])
     }
 }

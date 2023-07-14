@@ -48,6 +48,7 @@ class HomeVC: UIViewController {
         btn.tintColor = .white
         btn.semanticContentAttribute = .forceLeftToRight
         btn.backgroundColor = UIColor(hex: "#33e777")
+        btn.adjustsImageWhenHighlighted = true
         btn.layer.cornerRadius = 10
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
