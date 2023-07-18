@@ -11,4 +11,4 @@ The application was built using:
 * UIKit (Programmatic approach)
 
 # Screenshots
-<img align='left' src="hubtel-coding-challenge-repo/Assets.xcassets/screenshot.imageset/screenshot.png"  width="250">
+<img align='left' src="hubtel-coding-challenge-repo/Assets.xcassets/screenshot.imageset/Simulator Screenshot - iPhone 14 Pro Max - 2023-07-18 at 16.11.27.png"  width="250">
