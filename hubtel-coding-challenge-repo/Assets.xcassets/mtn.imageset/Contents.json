@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "mtn.png",
+      "filename" : "MTN Mobile Money.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "MTN Mobile Money@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "MTN Mobile Money@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

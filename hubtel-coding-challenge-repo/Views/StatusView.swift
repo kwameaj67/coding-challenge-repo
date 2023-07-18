@@ -8,15 +8,15 @@
 import UIKit
 
 
-class StatusView: UIStackView {
+class StatusView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        axis = .horizontal
-        alignment = .center
-        distribution = .fill
-        translatesAutoresizingMaskIntoConstraints = false
+//        axis = .horizontal
+//        alignment = .center
+//        distribution = .fill
+//        translatesAutoresizingMaskIntoConstraints = false
         
         setupViews()
         setupContraints()
@@ -44,8 +44,8 @@ class StatusView: UIStackView {
 
 
     func setupViews(){
-        addArrangedSubview(icon)
-        addArrangedSubview(statusLbl)
+        addSubview(icon)
+        addSubview(statusLbl)
     }
     
     func setupContraints(){
@@ -56,7 +56,7 @@ class StatusView: UIStackView {
             icon.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             
             statusLbl.centerYAnchor.constraint(equalTo: centerYAnchor),
-            statusLbl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            statusLbl.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -8),
         ])
     }
 }

@@ -17,10 +17,8 @@ class HomeVC: UIViewController {
         navigationController?.navigationBar.isHidden = true
         setupViews()
         setupContraints()
-        
-    }
 
-    
+    }
     // MARK: Properties -
     lazy var tableview: UITableView = {
         let tv = UITableView(frame: .zero, style: .plain)
@@ -44,11 +42,11 @@ class HomeVC: UIViewController {
         btn.setTitleColor(.white, for: .normal)
         btn.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 14)
         btn.setImage(UIImage(systemName: "plus.circle")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
+        //btn.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
         btn.tintColor = .white
         btn.semanticContentAttribute = .forceLeftToRight
-        btn.backgroundColor = UIColor(hex: "#33e777")
-        btn.adjustsImageWhenHighlighted = true
+        btn.backgroundColor = UIColor(hex: "#01C7B1")
+       //btn.adjustsImageWhenHighlighted = true
         btn.layer.cornerRadius = 10
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
@@ -112,7 +110,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(250)
+        return CGFloat(235)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

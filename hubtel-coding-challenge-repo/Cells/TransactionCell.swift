@@ -101,8 +101,8 @@ class TransactionCell: UITableViewCell {
 
     lazy var userImage : UIImageView = {
         var iv = UIImageView()
-        iv.image = UIImage(systemName: "person.circle.fill")?.withRenderingMode(.alwaysTemplate)
-        iv.tintColor = UIColor.purple
+        iv.image = UIImage(named: "profile")?.withRenderingMode(.alwaysOriginal)
+//        iv.tintColor = UIColor(hex: "#7978DE")
         iv.contentMode = .scaleAspectFill
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
@@ -110,8 +110,8 @@ class TransactionCell: UITableViewCell {
     
     lazy var starImage : UIImageView = {
         var iv = UIImageView()
-        iv.image = UIImage(systemName: "star.fill")?.withRenderingMode(.alwaysTemplate)
-        iv.tintColor = UIColor(hex: "#e4e806")
+        iv.image = UIImage(named: "favorite")?.withRenderingMode(.alwaysOriginal)
+//        iv.tintColor = UIColor(hex: "#e4e806")
         iv.contentMode = .scaleAspectFill
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
@@ -167,24 +167,25 @@ class TransactionCell: UITableViewCell {
             dateLbl.topAnchor.constraint(equalTo: container.topAnchor, constant: 15),
             dateLbl.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
             
-            logoImage.topAnchor.constraint(equalTo: dateLbl.bottomAnchor, constant: 20),
+            logoImage.topAnchor.constraint(equalTo: dateLbl.bottomAnchor, constant: 10),
             logoImage.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10),
             logoImage.widthAnchor.constraint(equalToConstant: 50),
             logoImage.heightAnchor.constraint(equalToConstant: 50),
 
-            nameLbl.topAnchor.constraint(equalTo: dateLbl.bottomAnchor, constant: 20),
+            nameLbl.topAnchor.constraint(equalTo: dateLbl.bottomAnchor, constant: 10),
             nameLbl.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 10),
             
             mobileLbl.topAnchor.constraint(equalTo: nameLbl.bottomAnchor, constant: 10),
             mobileLbl.leadingAnchor.constraint(equalTo: logoImage.trailingAnchor, constant: 10),
             mobileLbl.centerYAnchor.constraint(equalTo: priceLbl.centerYAnchor),
             
-            statusView.topAnchor.constraint(equalTo: dateLbl.bottomAnchor,constant: 20),
+            statusView.topAnchor.constraint(equalTo: dateLbl.bottomAnchor,constant: 10),
             statusView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
             statusView.leadingAnchor.constraint(equalTo: nameLbl.trailingAnchor, constant: 30),
             statusView.heightAnchor.constraint(equalToConstant: 30),
+            statusView.widthAnchor.constraint(equalToConstant: 80),
             
-            priceLbl.topAnchor.constraint(equalTo: statusView.bottomAnchor,constant: 20),
+            priceLbl.topAnchor.constraint(equalTo: statusView.bottomAnchor,constant: 12),
             priceLbl.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10),
 
             border.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -12),
@@ -203,8 +204,8 @@ class TransactionCell: UITableViewCell {
             userImage.heightAnchor.constraint(equalToConstant: 30),
             userImage.widthAnchor.constraint(equalToConstant: 30),
             
-            starImage.heightAnchor.constraint(equalToConstant: 30),
-            starImage.widthAnchor.constraint(equalToConstant: 30),
+            starImage.heightAnchor.constraint(equalToConstant: 20),
+            starImage.widthAnchor.constraint(equalToConstant: 20),
             
         ])
     }
@@ -228,16 +229,16 @@ class TransactionCell: UITableViewCell {
         switch item.transaction_status {
             case .failed:
                 statusView.statusLbl.text = "Failed"
-                statusView.statusLbl.textColor = UIColor(hex: "#e14015")
-                statusView.backgroundColor = UIColor(hex: "#e14015")?.withAlphaComponent(0.2)
-                statusView.icon.image = UIImage(systemName: "xmark.circle.fill")?.withRenderingMode(.alwaysTemplate)
-                statusView.icon.tintColor = UIColor(hex: "#e14015")
+                statusView.statusLbl.textColor = UIColor(hex: "#CC2444")
+                statusView.backgroundColor = UIColor(hex: "#CC2444")?.withAlphaComponent(0.2)
+                statusView.icon.image = UIImage(named: "failed")?.withRenderingMode(.alwaysOriginal)
+//                statusView.icon.tintColor = UIColor(hex: "#CC2444")
             case .sucesss:
-                statusView.statusLbl.text = "Sucesssful"
-                statusView.statusLbl.textColor = UIColor(hex: "#37e120")
-                statusView.backgroundColor = UIColor(hex: "#37e120")?.withAlphaComponent(0.2)
-                statusView.icon.image = UIImage(systemName: "checkmark.seal.fill")?.withRenderingMode(.alwaysTemplate)
-                statusView.icon.tintColor = UIColor(hex: "#37e120")
+                statusView.statusLbl.text = "Success"
+                statusView.statusLbl.textColor = UIColor(hex: "#70E083")
+                statusView.backgroundColor = UIColor(hex: "#DBF7E0")
+                statusView.icon.image = UIImage(named: "success")?.withRenderingMode(.alwaysOriginal)
+//                statusView.icon.tintColor = UIColor(hex: "#70E083")
             case .pending:
                 statusView.statusLbl.text = "Pending"
                 statusView.statusLbl.textColor = UIColor(hex: "#20a9e1")
